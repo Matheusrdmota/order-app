@@ -33,7 +33,7 @@ public class ProductTest {
     @Test
     public void shouldNotCreateIfPriceIsNegative(){
         factory = new ProductFactory();
-        product = factory.createProduct(1L, 99.9,
+        product = factory.createProduct(1L, -99.9,
                 ProductCategoryEnum.MOVEL, "liquidi",
                 "liquidi", "www.img.com", 40L);
 
