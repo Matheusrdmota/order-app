@@ -1,4 +1,4 @@
-package com.example.demo.entities;
+package com.example.demo.product.entities;
 
 import com.example.demo.product.entities.Product;
 import com.example.demo.product.entities.ProductCategoryEnum;

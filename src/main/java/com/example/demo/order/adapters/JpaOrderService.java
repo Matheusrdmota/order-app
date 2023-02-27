@@ -60,7 +60,7 @@ public class JpaOrderService implements OrderGateway {
 
     @Override
     public ResponseOrderDTO update(ResponseOrderDTO orderDTO){
-        OrderDataMapper orderMapper = new OrderDataMapper();
+        OrderDataMapper orderMapper = this.repository.findByOrderNumber(orderDTO.getOrderNumber());
 
         orderMapper.setOrderNumber(orderDTO.getOrderNumber());
         orderMapper.setOrderValue(orderDTO.getOrderValue());

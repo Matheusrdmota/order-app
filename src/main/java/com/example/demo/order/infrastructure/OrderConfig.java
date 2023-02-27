@@ -27,4 +27,10 @@ public class OrderConfig {
 
     @Bean
     public AwaitForPaymentInteractorImpl awaitForPaymentInteractor() { return new AwaitForPaymentInteractorImpl(orderService); }
+
+    @Bean
+    public CancelOrderInteractorImpl cancelOrderInteractor() { return new CancelOrderInteractorImpl(orderService); }
+
+    @Bean
+    public PendingOrderInteractorImpl pendingOrderInteractor() { return new PendingOrderInteractorImpl(orderService); }
 }
