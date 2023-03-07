@@ -1,6 +1,7 @@
 package com.example.demo.order.usecases.interactorsImpl;
 
 import com.example.demo.order.entities.Order;
+import com.example.demo.order.entities.OrderBuilder;
 import com.example.demo.order.entities.Status;
 import com.example.demo.order.usecases.dto.RequestOrderDTO;
 import com.example.demo.order.usecases.dto.ResponseOrderDTO;
@@ -25,10 +26,10 @@ public class CreateOrderInteractorImpl implements CreateOrderInteractor {
             throw new IllegalArgumentException("Numero de pedido ja existe!");
         }
 
-        Order order = new Order();
-
-        order.setClient(requestOrderDTO.getClient());
-        order.setPaymentType(requestOrderDTO.getPaymentType());
+        Order order = OrderBuilder.Builder()
+                .withClient(requestOrderDTO.getClient())
+                .withPaymentType(requestOrderDTO.getPaymentType())
+                .build();
 
         if(!requestOrderDTO.getDiscount().equals(BigDecimal.ZERO)) {
             order.setDiscount(requestOrderDTO.getDiscount());
@@ -40,11 +41,6 @@ public class CreateOrderInteractorImpl implements CreateOrderInteractor {
         if(!order.isValidDiscount()){
             throw new IllegalArgumentException("porcentagem de desconto inválida!");
         }
-
-        requestOrderDTO.setOrderValue(BigDecimal.ZERO);
-        requestOrderDTO.setDate(LocalDateTime.now());
-        requestOrderDTO.setProducts(new ArrayList<>());
-        requestOrderDTO.setStatus(Status.PENDENTE);
 
         return this.gateway.create(requestOrderDTO);
     }
