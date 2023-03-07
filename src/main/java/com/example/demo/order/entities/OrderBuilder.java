@@ -7,6 +7,10 @@ import java.util.ArrayList;
 public class OrderBuilder {
     private Order order;
 
+    public OrderBuilder(){
+        this.order = new Order();
+    }
+
     public static OrderBuilder Builder(){
         return new OrderBuilder();
     }
